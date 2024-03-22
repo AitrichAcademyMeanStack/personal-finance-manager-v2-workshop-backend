@@ -10,9 +10,11 @@ import swaggerjsdoc from 'swagger-jsdoc' // importing swagger-jsdoc
 import swaggerui from 'swagger-ui-express' // imorting swagger-ui-express
 import path , { dirname }  from 'path'; // importing path , dirname API'S from path module
 import { fileURLToPath } from 'url'; // importing url module
-import logger from './middleware/logger.js';
+import logger from "./Middleware/logger.js"
 const __dirname = dirname(fileURLToPath(import.meta.url)); // Configuring dirname path
-import userRouter from "./User/Router.js"
+import userRouter from "./User/Router.js";
+import expenseCategoryRouter from "./Category/ExpenseCategory/Router.js";
+import incomeCategoryRouter from "./Category/IncomeCategory/Router.js";
 
 
 
@@ -45,14 +47,15 @@ servers: [
 
 // Swagger routes
 const options = {
-    swaggerDefinition,
-    apis: [
-        path.join(__dirname,"Expense" , "Router.js"),
-        path.join(__dirname,"Income","Router.js"),
-        path.join(__dirname,"User","Router.js"),
-        path.join(__dirname,"Account","Router.js")
-
-    ],
+  swaggerDefinition,
+  apis: [
+    path.join(__dirname, "Expense", "Router.js"),
+    path.join(__dirname, "Income", "Router.js"),
+    path.join(__dirname, "User", "Router.js"),
+    path.join(__dirname, "Account", "Router.js"),
+    path.join(__dirname, "Category", "ExpenseCategory", "Router.js"),
+    path.join(__dirname, "Category", "IncomeCategory", "Router.js"),
+  ],
 };
 
 const swaggerspecs = swaggerjsdoc(options);
@@ -69,6 +72,9 @@ app.use('/api-docs',swaggerui.serve,swaggerui.setup(swaggerspecs,{
 app.use("/api/v1/expense",expenseRouter);
 app.use("/api/v1/income",incomeRouter);
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/expense-category", expenseCategoryRouter);
+app.use("/api/v1/income-category", incomeCategoryRouter);
+
  
 
 
