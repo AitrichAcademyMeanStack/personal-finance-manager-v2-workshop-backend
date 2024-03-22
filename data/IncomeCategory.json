@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Salary",
+    "description": "Regular payment received by an employee from an employer."
+  },
+  {
+    "title": "Investment Returns",
+    "description": "Profits or gains earned from investments such as stocks, bonds, or mutual funds."
+  },
+  {
+    "title": "Rental Income",
+    "description": "Money earned from renting out property or assets to tenants."
+  },
+  {
+    "title": "Freelance Earnings",
+    "description": "Income earned by providing services on a freelance or contract basis."
+  },
+  {
+    "title": "Business Profits",
+    "description": "Net income earned from operating a business after deducting all expenses."
+  },
+  {
+    "title": "Gifts and Inheritances",
+    "description": "Money or assets received as a gift or inheritance from family or friends."
+  },
+  {
+    "title": "Interest Income",
+    "description": "Income earned from interest payments on savings accounts, bonds, or loans."
+  },
+  {
+    "title": "Dividend Income",
+    "description": "Payments received from owning stocks or shares in a company."
+  },
+  {
+    "title": "Capital Gains",
+    "description": "Profit earned from selling an asset or investment for more than its purchase price."
+  },
+  {
+    "title": "Royalty Income",
+    "description": "Payments received from allowing someone else to use your intellectual property or creative work."
+  }
+]
