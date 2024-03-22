@@ -1,11 +1,10 @@
 
 import express from "express";
-import multer from "multer";
+import { uploadprofilepicture } from "../Utils/Fileupload.js"; // Import multer configuration
 import profileController from "./Controller.js";
 
-
 const router = express.Router();
-const uploadImage = multer();
+
 /**
  * @swagger
  *  components:
@@ -13,59 +12,76 @@ const uploadImage = multer();
  *      Profile:
  *        type: object
  *        required:
- *          - firstname
- *          - lastname
  *          - imageUrls
- *         properties:
- *         firstname: 
- *           type: string
- *         lastnmae:
- *           type: string       
+ *        properties:
+ *         ProfilePicture:
+ *            type: string
  */
 
- /**
+/**
  * @swagger
- * /api/v1/profile:
- *   post:
- *     summary: Add profilepic
- *     consumes:
- *       - multipart/form-data
- *       - application/json
- *     tags:
- *       - Profile
- *     requestBody:
- *       required: true
- *       content:
- *         multipart/form-data:
- *           schema:
+ * /api/v1/profile/user/{userid}:
+ *  post:
+ *      summary: add profilepicture in user profilepicture details
+ *      description: This API is used to add profilepicture in user profile.
+ *      consumes:
+ *        - multipart/form-data
+ *      tags:
+ *        - Profile
+ *      parameters:
+ *        - in: path
+ *          name: userid
+ *          required: true
+ *          description: Numeric ID is required.
+ *          schema:
+ *            type: string
+ *      requestBody:
+ *        required: true
+ *        content:
+ *          multipart/form-data:
+ *            schema:
  *              type: object
  *              properties:
- *                  imageUrls:
- *                      type: array
- *                      items:
- *                          type: string
- *                          format: binary
- *              required:
- *                  - imageUrls
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/Profile'
- *     responses:
- *       201:
- *         description: Profilepic added successfully
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/Profile'
- *       400:
- *         description: Bad request, check the request body
+ *                ProfilePicture:
+ *                  type: string
+ *                  format: binary
+ *      responses:
+ *        200:
+ *          description: user ProfilePicture updated successfully
+ *          content:
+ *            application/json:
+ *              schema:
+ *                $ref: '#/components/schemas/Profile'
+ *        400:
+ *          description: Not found error, check the request body
  */
+router.post('/user/:userid', uploadprofilepicture.single('ProfilePicture'), profileController.addProfilePicture); // Upload profile picture
 
-router.post("/", uploadImage.single('imageUrls'), profileController.uploadProfilePicture);
+/**
+ * @swagger
+ * /api/v1/profile/user/{userid}:
+ *  get:
+ *      summary: get  profilepicture
+ *      description: this is is used to get  profilepicture
+ *      tags:
+ *          - Profile
+ *      parameters:
+ *          - in: path
+ *            name: userid
+ *            required: true
+ *            description: numeric id is required
+ *            schema:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description:  profilepicture retrived successfully
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: object
+ *                          items:
+ *                              $ref: '#/components/schemas/Profile' 
+ */
+router.get('/user/:userid',profileController.getprofilepicture)//getting 
 
 export default router
-
-
-
-
-

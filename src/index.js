@@ -10,9 +10,10 @@ import swaggerjsdoc from 'swagger-jsdoc' // importing swagger-jsdoc
 import swaggerui from 'swagger-ui-express' // imorting swagger-ui-express
 import path , { dirname }  from 'path'; // importing path , dirname API'S from path module
 import { fileURLToPath } from 'url'; // importing url module
-import logger from './middleware/logger.js';
+// import logger from "./Middleware/logger.js";
 const __dirname = dirname(fileURLToPath(import.meta.url)); // Configuring dirname path
-import userRouter from "./User/Router.js"
+import userRouter from "./User/Router.js";
+import profileRouter from "./Profile/Router.js";
 
 
 
@@ -37,7 +38,7 @@ const swaggerDefinition = {
     },
 servers: [
     {
-        url: "http://localhost:3000"
+        url: "http://localhost:8080"
     },
 ],
 
@@ -50,7 +51,8 @@ const options = {
         path.join(__dirname,"Expense" , "Router.js"),
         path.join(__dirname,"Income","Router.js"),
         path.join(__dirname,"User","Router.js"),
-        path.join(__dirname,"Account","Router.js")
+        path.join(__dirname,"Account","Router.js"),
+        path.join(__dirname,"Profile","Router.js")
 
     ],
 };
@@ -69,6 +71,7 @@ app.use('/api-docs',swaggerui.serve,swaggerui.setup(swaggerspecs,{
 app.use("/api/v1/expense",expenseRouter);
 app.use("/api/v1/income",incomeRouter);
 app.use("/api/v1/user",userRouter);
+app.use("/api/v1/profile",profileRouter);
  
 
 
