@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Housing",
+    "description": "Costs related to shelter, including rent or mortgage payments, property taxes, and maintenance."
+  },
+  {
+    "title": "Transportation",
+    "description": "Expenses related to commuting, vehicle maintenance, public transportation, or travel."
+  },
+  {
+    "title": "Food and Groceries",
+    "description": "Costs associated with purchasing food items and groceries for daily consumption."
+  },
+  {
+    "title": "Utilities",
+    "description": "Regular expenses for essential services like electricity, water, gas, and internet."
+  },
+  {
+    "title": "Healthcare",
+    "description": "Medical expenses, including insurance premiums, doctor visits, medications, and treatments."
+  },
+  {
+    "title": "Entertainment",
+    "description": "Spending on leisure activities, hobbies, dining out, movies, and other forms of entertainment."
+  },
+  {
+    "title": "Education",
+    "description": "Costs related to tuition, books, school supplies, and educational programs."
+  },
+  {
+    "title": "Debt Repayments",
+    "description": "Payments towards outstanding loans, credit card balances, or other forms of debt."
+  },
+  {
+    "title": "Savings and Investments",
+    "description": "Amounts set aside for savings accounts, retirement funds, or other investment opportunities."
+  },
+  {
+    "title": "Personal Care",
+    "description": "Expenditures on personal grooming, clothing, and other self-care items."
+  }
+]

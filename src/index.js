@@ -1,7 +1,7 @@
 import express from 'express';  // Importing Express.js
 import dotenv from 'dotenv';   // Importing Dotenv
 import cors from 'cors'; // Importing Cors
-import connectDb from './Config/db.js'; // Importing Database Connection
+import connectToDatabase from "./Config/db.js"; // Importing Database Connection
 import NotFoundError from './Exceptions/NotFoundError.js'; // Importing NotFoundError
 import { ErrorHandler } from './Utils/errorHandler.js'; // Importing Global Error Handler
 import expenseRouter from "../src/Expense/Router.js" // Importing routes of Expense
@@ -37,7 +37,7 @@ const swaggerDefinition = {
     },
 servers: [
     {
-        url: "http://localhost:8080"
+        url: "http://localhost:3000"
     },
 ],
 
@@ -83,15 +83,16 @@ app.use("*" , (req , res , next) => {
 app.use(ErrorHandler)
 
 // Calling Database Connection
-connectDb()
-.then(() => {
+connectToDatabase()
+  .then(() => {
     // After connecting to database, listening to server
-    app.listen(process.env.PORT || 4000, () => console.log(`💻 Server is listening on port ${process.env.PORT}`))
-})
-.catch((err) => {
-    logger.error("MongoDB Connection failed",err)
-
-})
+    app.listen(process.env.PORT || 4000, () =>
+      console.log(`💻 Server is listening on port ${process.env.PORT}`)
+    );
+  })
+  .catch((err) => {
+    logger.error("MongoDB Connection failed", err);
+  });
 
 
 
