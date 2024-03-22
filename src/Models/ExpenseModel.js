@@ -33,6 +33,7 @@ const expenseSchema = new mongoose.Schema(
       trim: true,
     },
     category: {
+      // Embedding Category
       name: {
         type: String,
         required: true,
