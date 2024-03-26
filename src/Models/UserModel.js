@@ -37,6 +37,8 @@ const UserSchema = new Schema(
             // required: true,
             trim: true 
         },
+      
+        
         
     },
     { timestamps: true, versionKey: false } 

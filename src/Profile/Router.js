@@ -84,4 +84,44 @@ router.post('/user/:userid', uploadprofilepicture.single('ProfilePicture'), prof
  */
 router.get('/user/:userid',profileController.getprofilepicture)//getting 
 
+// /**
+//  * @swagger
+//  * * /api/v1/profile/user/{userid}:
+//  *  put:
+//  *      summary: add profilepicture 
+//  *      description: This API is used to add profilepicture in user profile.
+//  *      consumes:
+//  *        - multipart/form-data
+//  *      tags:
+//  *        - Profile
+//  *      parameters:
+//  *        - in: path
+//  *          name: userid
+//  *          required: true
+//  *          description: Numeric ID is required.
+//  *          schema:
+//  *            type: string
+//  *      requestBody:
+//  *        required: true
+//  *        content:
+//  *          multipart/form-data:
+//  *            schema:
+//  *              type: object
+//  *              properties:
+//  *                ProfilePicture:
+//  *                  type: string
+//  *                  format: binary
+//  *      responses:
+//  *        200:
+//  *          description: ProfilePicture updated successfully
+//  *          content:
+//  *            application/json:
+//  *              schema:
+//  *                $ref: '#/components/schemas/Profile'
+//  *        400:
+//  *          description: Not found error, check the request body
+//  */
+// router.put('/user/:userid',uploadprofilepicture.single('ProfilePicture'),profileController.addProfilePicture) 
+
+
 export default router

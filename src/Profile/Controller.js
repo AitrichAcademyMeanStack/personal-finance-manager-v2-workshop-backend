@@ -15,9 +15,12 @@ const addProfilePicture = asyncErrorHandler(async (req, res) => {
 });
 
 
-const getprofilepicture=asyncErrorHandler(async(req,res)=>{
+const getprofilepicture = asyncErrorHandler(async(req,res)=>{
+  const userId = req.params.userId
   
-});
+  const gettprofilepicture = await profileService.getProfilePicture(userId)
+  res.status(200).json(gettprofilepicture)
+})
 
 
 export default { addProfilePicture,getprofilepicture };
