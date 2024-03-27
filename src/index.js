@@ -3,7 +3,7 @@ import dotenv from 'dotenv';   // Importing Dotenv
 import cors from 'cors'; // Importing Cors
 import connectToDatabase from "./Config/db.js"; // Importing Database Connection
 import NotFoundError from './Exceptions/NotFoundError.js'; // Importing NotFoundError
-import { ErrorHandler } from './Utils/errorHandler.js'; // Importing Global Error Handler
+// import { ErrorHandler } from './Utils/errorHandler.js'; // Importing Global Error Handler
 import expenseRouter from "../src/Expense/Router.js" // Importing routes of Expense
 import incomeRouter from "../src/Income/Router.js" // Importing routes of Income
 import swaggerjsdoc from 'swagger-jsdoc' // importing swagger-jsdoc
@@ -24,12 +24,16 @@ dotenv.config({
     path:"./.env"
 })
 
-const app = express()
 
+
+
+const app = express()
+app.use(express.static("File"))
 // Defining Middleware
 app.use(express.json())
 app.use(cors())
 
+//app.use('/File', express.static(path.join(__dirname, 'File')));
 // Setup swagger
 const swaggerDefinition = {
     openapi: "3.0.0",
@@ -83,14 +87,14 @@ app.use("/api/v1/income-category", incomeCategoryRouter);
 
 
 // Handling unmatched URL'S
-app.use("*" , (req , res , next) => {
-    const error =  new NotFoundError("Invalid Url")
-    next(error)
+// app.use("*" , (req , res , next) => {
+//     const error =  new NotFoundError("Invalid Url")
+//     next(error)
 
-})
+// })
 
 // Global Error Handler
-app.use(ErrorHandler)
+// app.use(ErrorHandler)
 
 // Calling Database Connection
 connectToDatabase()

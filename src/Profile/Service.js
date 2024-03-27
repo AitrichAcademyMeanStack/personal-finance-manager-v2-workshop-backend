@@ -87,7 +87,7 @@ const uploadProfilePicture = async (file, userId) => {
     }
 
     // Create or update the profile picture for the user
-    await Profile.create({ userId: userId, imageUrl: file.path });
+    await Profile.create({ imageUrls: file.path });
 
     logger.info("Profile Picture uploaded successfully");
   } catch (error) {
@@ -96,19 +96,44 @@ const uploadProfilePicture = async (file, userId) => {
   }
 };
 
+// const getProfilePicture = async (userId) => {
+//   try {
+//     const profile = await Profile.findOne({ userId: userId });
+//     if (!profile) {
+//       throw new Error("Profile not found for this user");
+//     }
+
+//     logger.info("Profile picture retrieved successfully");
+//     return "1711427386578__about-2.jpg";
+   
+
+//   } catch (error) {
+//     logger.error("Error retrieving profile picture:", error);
+//     throw error;
+//   }
+// };
+
+
 const getProfilePicture = async (userId) => {
   try {
+    // Find the profile document in the database for the given userId
     const profile = await Profile.findOne({ userId: userId });
     if (!profile) {
       throw new Error("Profile not found for this user");
     }
 
+    // Extract the imageUrl from the profile document
+    const imageUrl = profile.imageUrls;
+
     logger.info("Profile picture retrieved successfully");
-    return profile.imageUrls;
+
+    // Return the actual imageUrl from the database
+    return imageUrl;
   } catch (error) {
     logger.error("Error retrieving profile picture:", error);
     throw error;
   }
 };
+
 
 export default { uploadProfilePicture, getProfilePicture };
